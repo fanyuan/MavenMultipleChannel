@@ -5,14 +5,14 @@ publishing {
     publications {
         def projectNm = project.getName()
         println "projectName = $projectNm"
-        //重庆测试环境
+        //自定义环境
         cqtest(MavenPublication) {//cqtest即为渠道的名称，可以随意取
             groupId = "$GROUP_ID"//公司域名
-            artifactId = "$ARTIFACT_ID-$FLAVORS_CQTEST"//该aar包的名称
+            artifactId = "$ARTIFACT_ID-$FLAVORS_EVN01"//该aar包的名称
             version = "$VERSION_NAME"//版本号
             def projectName = project.getName()
 
-            artifact "$buildDir/outputs/aar/myLibary-cqtest-release.aar"//对应该渠道打包出来的aar所在的目录（如何打包请往下看）
+            artifact "$buildDir/outputs/aar/myLibary-evn01-release.aar"//对应该渠道打包出来的aar所在的目录（如何打包请往下看）
 //            pom.withXml{
 //                def dependenciesNode = asNode().appendNode("dependencies")
 //                configurations.implementation.allDependencies.forEach(){

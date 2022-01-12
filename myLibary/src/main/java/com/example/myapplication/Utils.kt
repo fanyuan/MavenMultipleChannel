@@ -9,6 +9,6 @@ object Utils {
     }
     @JvmStatic
     fun getVerWihtFlavor(context: Context):String{
-        return "${context.resources.getString(R.string.flavor)} =123 v_1.0"
+        return "${context.resources.getString(R.string.flavor)} = v_1.0"
     }
 }
