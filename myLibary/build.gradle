@@ -3,8 +3,9 @@ plugins {
     id 'com.android.library'
     id 'kotlin-android'
 }
-apply from: 'mavenpublish.gradle'
-
+//apply from: 'mavenpublish.gradle'
+//apply from: this.rootProject.file('mavenpublish.gradle')
+apply from: rootProject.file('mavenpublish.gradle')
 android {
     compileSdk 32
 
@@ -54,7 +55,8 @@ task deployToMaven{
     tasks.preBuild.mustRunAfter(tasks.clean)
 
     //👇
-    tasks.generatePomFileForCqtestPublication.mustRunAfter(tasks.build)
+    //tasks.generatePomFileForCqtestPublication.mustRunAfter(tasks.build)
+    tasks.generatePomFileForEvn01Publication.mustRunAfter(tasks.build)
     tasks.generatePomFileForDevPublication.mustRunAfter(tasks.build)
     tasks.generatePomFileForPrePublication.mustRunAfter(tasks.build)
 }
