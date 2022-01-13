@@ -6,28 +6,32 @@ publishing {
     properties.load(project.rootProject.file('mavenpublish.properties')
             .newDataInputStream())
 
-    def projectNm = project.getName()
+    def projectName = project.getName()
     //    myLibary_version_name=1.3-SNAPSHOT
-    def versionString = properties.getProperty("${projectNm}_version_name")//"${VERSION_NAME}"//"1.6.2-SNAPSHOT"//"1.6.2"//
+    def versionString = properties.getProperty("${projectName}_version_name")//"${VERSION_NAME}"//"1.6.2-SNAPSHOT"//"1.6.2"//
     println "properties versionString = $versionString"
     //    myLibary_group_id = com.example.myapplication
-    def groupIdString = properties.getProperty("${projectNm}_group_id")//"${VERSION_NAME}"//"1.6.2-SNAPSHOT"//"1.6.2"//
+    def groupIdString = properties.getProperty("${projectName}_group_id")//"${VERSION_NAME}"//"1.6.2-SNAPSHOT"//"1.6.2"//
     println "properties groupIdString = $groupIdString"
     //    myLibary_artifact_id = myLibary
-    def artifactIdString = properties.getProperty("${projectNm}_artifact_id")//"${VERSION_NAME}"//"1.6.2-SNAPSHOT"//"1.6.2"//
+    def artifactIdString = properties.getProperty("${projectName}_artifact_id")//"${VERSION_NAME}"//"1.6.2-SNAPSHOT"//"1.6.2"//
     println "properties artifactIdString = $artifactIdString"
 
     publications {
 
-        println "projectName = $projectNm  "
+        println "projectName = $projectName " +
+                "\n buildDir = $buildDir "
+
         //自定义环境
         evn01(MavenPublication) {//evn01即为渠道的名称，可以随意取
-            groupId = "$GROUP_ID"//公司域名
-            artifactId = "$ARTIFACT_ID-$FLAVORS_EVN01"//该aar包的名称
-            version = "$VERSION_NAME"//版本号
-            def projectName = project.getName()
+            //公司域名
+            groupId = groupIdString//"$GROUP_ID"
+            //版本号
+            version = versionString//"$VERSION_NAME"
+            //该aar包的名称
+            artifactId = "$artifactIdString-$FLAVORS_EVN01"
 
-            artifact "$buildDir/outputs/aar/myLibary-evn01-release.aar"//对应该渠道打包出来的aar所在的目录（如何打包请往下看）
+            artifact "$buildDir/outputs/aar/${projectName}-evn01-release.aar"//对应该渠道打包出来的aar所在的目录（如何打包请往下看）
 //            pom.withXml{
 //                def dependenciesNode = asNode().appendNode("dependencies")
 //                configurations.implementation.allDependencies.forEach(){
@@ -44,11 +48,13 @@ publishing {
 
         //开发环境
         dev(MavenPublication) {
-            groupId = "$GROUP_ID"//公司域名
-            artifactId = "$ARTIFACT_ID-$FLAVORS_DEV"//该aar包的名称
-            version = "$VERSION_NAME"//版本号
-            def projectName = project.getName()
-            artifact "build/outputs/aar/myLibary-dev-release.aar"
+            //公司域名
+            groupId = groupIdString//"$GROUP_ID"
+            //版本号
+            version = versionString//"$VERSION_NAME"
+            artifactId = "${artifactIdString}-$FLAVORS_DEV"//该aar包的名称
+
+            artifact "$buildDir/outputs/aar/${projectName}-dev-release.aar"//"build/outputs/aar/${projectName}-dev-release.aar"
 //            pom.withXml{
 //                def dependenciesNode = asNode().appendNode("dependencies")
 //                configurations.implementation.allDependencies.forEach(){
@@ -65,11 +71,13 @@ publishing {
 
         //预发布环境
         pre(MavenPublication) {
-            groupId = "$GROUP_ID"//公司域名
-            artifactId = "$ARTIFACT_ID-${FLAVORS_PRE}"//该aar包的名称
-            version = "$VERSION_NAME"//版本号
-            def projectName = project.getName()
-            artifact "build/outputs/aar/myLibary-pre-release.aar"
+            //公司域名
+            groupId = groupIdString//"$GROUP_ID"
+            //版本号
+            version = versionString//"$VERSION_NAME"
+            artifactId = "${artifactIdString}-${FLAVORS_PRE}"//该aar包的名称
+
+            artifact "${buildDir}/outputs/aar/${projectName}-pre-release.aar"//"build/outputs/aar/${projectName}-pre-release.aar"
 //            pom.withXml{
 //                def dependenciesNode = asNode().appendNode("dependencies")
 //                configurations.implementation.allDependencies.forEach(){
