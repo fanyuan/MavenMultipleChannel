@@ -19,3 +19,5 @@ dependencyResolutionManagement {
 rootProject.name = "MavenMultipleChannel"
 include ':app'
 include ':myLibary'
+include ':librarySample'
+include ':librarySingleChannel'

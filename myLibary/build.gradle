@@ -5,7 +5,7 @@ plugins {
 }
 //apply from: 'mavenpublish.gradle'
 //apply from: this.rootProject.file('mavenpublish.gradle')
-apply from: rootProject.file('mavenpublish.gradle')
+apply from: rootProject.file('mavenpublish_multipleChannel.gradle')
 android {
     compileSdk 32
 
