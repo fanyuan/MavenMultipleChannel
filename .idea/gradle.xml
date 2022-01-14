@@ -11,6 +11,8 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/librarySample" />
+            <option value="$PROJECT_DIR$/librarySingleChannel" />
             <option value="$PROJECT_DIR$/myLibary" />
           </set>
         </option>
