@@ -45,6 +45,19 @@ android {
         jvmTarget = '1.8'
     }
 }
+//编译发布到maven
+task deployToMaven{
+    dependsOn(tasks.clean)
+    dependsOn(tasks.build)
+    dependsOn(tasks.publish)
+    tasks.preBuild.mustRunAfter(tasks.clean)
+
+    //👇
+    //tasks.generatePomFileForCqtestPublication.mustRunAfter(tasks.build)
+    tasks.generatePomFileForEvn01Publication.mustRunAfter(tasks.build)
+    tasks.generatePomFileForDevPublication.mustRunAfter(tasks.build)
+    tasks.generatePomFileForPrePublication.mustRunAfter(tasks.build)
+}
 
 dependencies {
 
